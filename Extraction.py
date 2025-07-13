@@ -29,3 +29,4 @@ def coletar_tweets(bearer_token: str, hashtag: str, idioma: str = "pt", limite: 
     os.makedirs("dados", exist_ok=True)
     df.to_csv("dados/tweets.csv", index=False)
     print(f"[✓] {len(df)} tweets salvos em dados/tweets.csv")
+
