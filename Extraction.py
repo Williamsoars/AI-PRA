@@ -1,24 +1,31 @@
 import tweepy
 import pandas as pd
+import os
 
-# Substitua com seu token
-bearer_token = "SEU_BEARER_TOKEN"
+def coletar_tweets(bearer_token: str, hashtag: str, idioma: str = "pt", limite: int = 1000):
+    """
+    Coleta tweets com base em uma hashtag e idioma.
 
-client = tweepy.Client(bearer_token=bearer_token)
+    Args:
+        bearer_token (str): Token da API do Twitter.
+        hashtag (str): Termo ou hashtag para busca.
+        idioma (str): Código do idioma (ex: 'pt', 'en').
+        limite (int): Número máximo de tweets.
+    """
+    client = tweepy.Client(bearer_token=bearer_token)
 
-query = "#examplehashtag -is:retweet lang:pt"
-tweets = []
+    query = f"{hashtag} -is:retweet lang:{idioma}"
+    tweets = []
 
-# Coleta de até 10.000 tweets (100 por página)
-for tweet in tweepy.Paginator(
+    for tweet in tweepy.Paginator(
         client.search_recent_tweets,
         query=query,
         tweet_fields=["text"],
         max_results=100
-    ).flatten(limit=10000):
-    tweets.append(tweet.text)
+    ).flatten(limit=limite):
+        tweets.append(tweet.text)
 
-# Salvando em CSV
-df = pd.DataFrame(tweets, columns=["text"])
-df.to_csv("tweets.csv", index=False)
-print("Tweets salvos com sucesso.")
+    df = pd.DataFrame(tweets, columns=["text"])
+    os.makedirs("dados", exist_ok=True)
+    df.to_csv("dados/tweets.csv", index=False)
+    print(f"[✓] {len(df)} tweets salvos em dados/tweets.csv")
