@@ -1,0 +1,45 @@
+import pandas as pd
+import torch
+from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification, Trainer, TrainingArguments
+from sklearn.model_selection import train_test_split
+from datasets import Dataset
+
+def preparar_dados(caminho_csv: str, label_col="label", text_col="text"):
+    df = pd.read_csv(caminho_csv)
+    return train_test_split(df[text_col], df[label_col], test_size=0.2, random_state=42)
+
+def treinar_bert(caminho_csv: str):
+    tokenizer = DistilBertTokenizerFast.from_pretrained("distilbert-base-uncased")
+    model = DistilBertForSequenceClassification.from_pretrained("distilbert-base-uncased", num_labels=2)
+
+    X_train, X_test, y_train, y_test = preparar_dados(caminho_csv)
+
+    ds_train = Dataset.from_dict({"text": X_train, "label": y_train})
+    ds_test = Dataset.from_dict({"text": X_test, "label": y_test})
+
+    def tokenize(batch):
+        return tokenizer(batch["text"], padding=True, truncation=True, max_length=128)
+
+    ds_train = ds_train.map(tokenize, batched=True)
+    ds_test = ds_test.map(tokenize, batched=True)
+
+    args = TrainingArguments(
+        output_dir="resultados_bert",
+        evaluation_strategy="epoch",
+        per_device_train_batch_size=16,
+        per_device_eval_batch_size=16,
+        num_train_epochs=3,
+        logging_dir="logs",
+        logging_steps=10,
+    )
+
+    trainer = Trainer(
+        model=model,
+        args=args,
+        train_dataset=ds_train,
+        eval_dataset=ds_test,
+        tokenizer=tokenizer
+    )
+
+    trainer.train()
+    print("[✓] Treinamento BERT completo.")
