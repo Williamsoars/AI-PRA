@@ -24,15 +24,19 @@ Biblioteca Python para coleta, processamento e classificação de tweets com an�
 # Clone o repositório
 git clone https://github.com/seu-usuario/tweet-sentiment-analysis.git
 cd tweet-sentiment-analysis
-
+```
 # Crie e ative o ambiente virtual
+```
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 .\venv\Scripts\activate  # Windows
-
-# Instale as dependências
+```
+### Instale as dependências
+```
 pip install -r requirements.txt
-⚡ Uso Rápido
+```
+### ⚡ Uso Rápido
+```
 1. Configuração
 Crie config.ini na raiz do projeto:
 
@@ -81,8 +85,9 @@ Exemplo de saída:
 
 text
 ✅ Análise concluída!
-
-📈 Métricas:
+```
+### 📈 Métricas:
+```
 - Acurácia: 0.87
 - F1-score: 0.86
 - Precision: 0.85  
@@ -102,18 +107,21 @@ Commit suas mudanças (git commit -m 'Add feature')
 Push para a branch (git push origin feature/nova-feature)
 
 Abra um Pull Request
-
-📄 Licença
+```
+### 📄 Licença
+```
 Distribuído sob licença MIT. Veja LICENSE para detalhes.
-
-📬 Contato
+```
+### 📬 Contato
+```
 Equipe de Análise de Dados - analise@email.com
 
 https://img.shields.io/twitter/follow/seu_perfil?style=social
 
 text
-
+```
 ### Recursos incluídos:
+```
 1. Tabela de funcionalidades organizada
 2. Passos de instalação completos
 3. Exemplos de código prontos para uso
