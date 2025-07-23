@@ -5,7 +5,7 @@ from pathlib import Path
 import pickle
 import logging
 import pandas as pd
-from src.utils.evaluation import evaluate_model
+from utils.evaluation import evaluate_model
 
 def load_labels(data_path: Path, label_column: str = "label"):
     try:
