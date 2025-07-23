@@ -1,8 +1,8 @@
-from src.extraction.twitter_extractor import collect_tweets
-from src.preprocessing.text_processor import preprocess_csv
-from src.features.tfidf_vectorizer import vectorize_tfidf
-from src.models.classical_models import train_models
-from src.utils.report import generate_report
+from extraction.twitter_extractor import collect_tweets
+from preprocessing.text_processor import preprocess_csv
+from features.tfidf_vectorizer import vectorize_tfidf
+from models.classical_models import train_models
+from utils.report import generate_report
 import configparser
 from pathlib import Path
 
