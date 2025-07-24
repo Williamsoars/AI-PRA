@@ -6,18 +6,17 @@ Biblioteca Python para coleta, processamento e classificação de tweets com an�
 
 | Módulo         | Recursos                                                                 |
 |----------------|--------------------------------------------------------------------------|
-| **Coleta**     | API Twitter v2 • Filtros avançados • Coleta histórica/em tempo real      |
+| **Coleta**     | Kasanova/sentiment140 • Filtros avançados • Coleta histórica             |
 | **Pré-process**| Limpeza de texto • Normalização • Tratamento de emojis/gírias            |
-| **Features**   | TF-IDF • Word2Vec • BERTimbau (BERT em português)                        |
-| **Modelos**    | SVM • Regressão Logística • LSTM • Transformers                          |
+| **Features**   | TF-IDF • Word2Vec • BERTimbau (BERT em português)   • Transformers       |
+| **Modelos**    | Regressão Logística • LSTM                                               |
 | **Avaliação**  | Métricas detalhadas • Matriz de confusão • Análise de erros              |
 
 ## 🚀 Começando
 
 ### Pré-requisitos
 - Python 3.8+
-- Conta de desenvolvedor no Twitter
-- Bearer Token da API
+
 
 ### Instalação
 ```bash
